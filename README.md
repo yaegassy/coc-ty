@@ -6,7 +6,11 @@
 
 **CocInstall**:
 
-> ...TODO
+```vim
+:CocInstall @yaegassy/coc-ty
+```
+
+> scoped packages
 
 **e.g. vim-plug**:
 
