@@ -82,7 +82,11 @@ function getLanguageClientDisabledFeatures() {
   // `:h coc-config-languageserver`
   if (getConfigDisableHover()) r.push('hover');
   if (getConfigDisableInlayHintHover()) r.push('inlayHint');
-  if (getConfigDisableTypeDefinitionHover()) r.push('typeDefinition');
+  if (getConfigDisableTypeDefinition()) r.push('typeDefinition');
+  if (getConfigDisableDiagnostics()) {
+    r.push('diagnostics');
+    r.push('pullDiagnostic');
+  }
 
   return r;
 }
@@ -95,6 +99,10 @@ function getConfigDisableInlayHintHover() {
   return workspace.getConfiguration('ty').get<boolean>('disableInlayHint', false);
 }
 
-function getConfigDisableTypeDefinitionHover() {
+function getConfigDisableTypeDefinition() {
   return workspace.getConfiguration('ty').get<boolean>('disableTypeDefinition', false);
+}
+
+function getConfigDisableDiagnostics() {
+  return workspace.getConfiguration('ty').get<boolean>('disableDiagnostics', false);
 }

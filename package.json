@@ -80,6 +80,11 @@
           "default": true,
           "description": "Enable coc-ty extension"
         },
+        "ty.disableDiagnostics": {
+          "type": "boolean",
+          "default": false,
+          "description": "Disable diagnostics only."
+        },
         "ty.disableHover": {
           "type": "boolean",
           "default": false,

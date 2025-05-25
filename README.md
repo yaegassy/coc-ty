@@ -21,10 +21,11 @@ Plug 'yaegassy/coc-ty', {'do': 'yarn install --frozen-lockfile'}
 ## Configuration options
 
 - `ty.enable`: Enable coc-ty extension, default: `true`
+- `ty.disableDiagnostics`: Disable diagnostics only, default: `false`
 - `ty.disableHover`: Disable hover only, default: `false`
 - `ty.disableInlayHint`: Disable inlayHint only, default: `false`
 - `ty.disableTypeDefinition`: Disable typeDefinition only, default: `false`
-- `ty.useDetectTyCommand`: Automatically detects the ty command in the execution environment and sets `tf.path`, default: `true`
+- `ty.useDetectTyCommand`: Automatically detects the ty command in the execution environment and sets `ty.path`, default: `true`
 - `ty.binaryPath`: Custom path for the `ty` binary. If no value is set, the `ty` command will be detected from the runtime environment, , default: `""`
 - `ty.trace.server`: Traces the communication between coc.nvim and the ty language server, default: `"off"`
 
