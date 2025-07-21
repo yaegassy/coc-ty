@@ -119,6 +119,19 @@
           },
           "type": "array"
         },
+        "ty.diagnosticMode": {
+          "default": "openFilesOnly",
+          "markdownDescription": "Analysis scope for showing diagnostics.",
+          "enum": [
+            "openFilesOnly",
+            "workspace"
+          ],
+          "enumDescriptions": [
+            "Analyzes and reports errors on only open files.",
+            "Analyzes and reports errors on all files in the workspace."
+          ],
+          "scope": "resource",
+          "type": "string"
         },
         "ty.importStrategy": {
           "default": "fromEnvironment",

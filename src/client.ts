@@ -27,12 +27,14 @@ type ImportStrategy = 'fromEnvironment' | 'useBundled';
 
 type LogLevel = 'error' | 'warn' | 'info' | 'debug' | 'trace';
 
+type DiagnosticMode = 'openFilesOnly' | 'workspace';
 
 type TyInitializationOptions = {
   settings: {
     path: string[];
     interpreter: string[];
     importStrategy: ImportStrategy;
+    diagnosticMode: DiagnosticMode;
     logLevel?: LogLevel;
     logFile?: string;
   };
@@ -45,7 +47,8 @@ function convertFromWorkspaceConfigToInitializationOptions() {
     settings: {
       path: settings.get<string[]>('path'),
       interpreter: settings.get('interpreter'),
-      importStrategy: settings.get<ImportStrategy>(`importStrategy`) ?? 'fromEnvironment',
+      importStrategy: settings.get<ImportStrategy>('importStrategy') ?? 'fromEnvironment',
+      diagnosticMode: settings.get<DiagnosticMode>('diagnosticMode') ?? 'openFilesOnly',
       logLevel: settings.get<LogLevel>('logLevel'),
       logFile: settings.get<string>('logFile'),
     },
