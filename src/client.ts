@@ -27,11 +27,6 @@ type ImportStrategy = 'fromEnvironment' | 'useBundled';
 
 type LogLevel = 'error' | 'warn' | 'info' | 'debug' | 'trace';
 
-type Experimental = {
-  completions?: {
-    enable?: boolean;
-  };
-};
 
 type TyInitializationOptions = {
   settings: {
@@ -40,7 +35,6 @@ type TyInitializationOptions = {
     importStrategy: ImportStrategy;
     logLevel?: LogLevel;
     logFile?: string;
-    experimental?: Experimental;
   };
 };
 
@@ -54,7 +48,6 @@ function convertFromWorkspaceConfigToInitializationOptions() {
       importStrategy: settings.get<ImportStrategy>(`importStrategy`) ?? 'fromEnvironment',
       logLevel: settings.get<LogLevel>('logLevel'),
       logFile: settings.get<string>('logFile'),
-      experimental: settings.get<Experimental>('experimental'),
     },
   };
 

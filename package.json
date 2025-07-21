@@ -119,11 +119,6 @@
           },
           "type": "array"
         },
-        "ty.experimental.completions.enable": {
-          "default": false,
-          "markdownDescription": "Whether to enable completions.",
-          "scope": "window",
-          "type": "boolean"
         },
         "ty.importStrategy": {
           "default": "fromEnvironment",
