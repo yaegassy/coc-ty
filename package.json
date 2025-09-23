@@ -100,11 +100,6 @@
           "default": false,
           "description": "Disable typeDefinition only."
         },
-        "ty.useDetectTyCommand": {
-          "type": "boolean",
-          "default": true,
-          "description": "Automatically detects the ty command in the execution environment and sets `ty.path`."
-        },
         "ty.binaryPath": {
           "type": "string",
           "default": "",
