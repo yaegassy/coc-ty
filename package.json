@@ -1,6 +1,6 @@
 {
   "name": "@yaegassy/coc-ty",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "coc.nvim extension with support for the ty type checker and language server.",
   "author": "yaegassy <yosstools@gmail.com>",
   "license": "MIT",
