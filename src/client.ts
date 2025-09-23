@@ -1,8 +1,6 @@
 import { LanguageClient, LanguageClientOptions, ServerOptions, workspace } from 'coc.nvim';
 import { SERVER_SUBCOMMAND } from './constant';
 
-import which from 'which';
-
 export function createServerClient(command: string) {
   const newEnv = { ...process.env };
   const args = [SERVER_SUBCOMMAND];
@@ -23,35 +21,19 @@ export function createServerClient(command: string) {
   return client;
 }
 
-type ImportStrategy = 'fromEnvironment' | 'useBundled';
-
 type LogLevel = 'error' | 'warn' | 'info' | 'debug' | 'trace';
 
-type DiagnosticMode = 'openFilesOnly' | 'workspace';
-
 type TyInitializationOptions = {
-  settings: {
-    path: string[];
-    interpreter: string[];
-    importStrategy: ImportStrategy;
-    diagnosticMode: DiagnosticMode;
-    logLevel?: LogLevel;
-    logFile?: string;
-  };
+  logLevel?: LogLevel;
+  logFile?: string;
 };
 
 function convertFromWorkspaceConfigToInitializationOptions() {
   const settings = workspace.getConfiguration('ty');
 
   const initializationOptions = <TyInitializationOptions>{
-    settings: {
-      path: settings.get<string[]>('path'),
-      interpreter: settings.get('interpreter'),
-      importStrategy: settings.get<ImportStrategy>('importStrategy') ?? 'fromEnvironment',
-      diagnosticMode: settings.get<DiagnosticMode>('diagnosticMode') ?? 'openFilesOnly',
-      logLevel: settings.get<LogLevel>('logLevel'),
-      logFile: settings.get<string>('logFile'),
-    },
+    logLevel: settings.get<LogLevel>('logLevel'),
+    logFile: settings.get<string>('logFile'),
   };
 
   return initializationOptions;
@@ -59,15 +41,6 @@ function convertFromWorkspaceConfigToInitializationOptions() {
 
 function getInitializationOptions() {
   const initializationOptions = convertFromWorkspaceConfigToInitializationOptions();
-
-  // MEMO: Custom Feature
-  if (workspace.getConfiguration('ty').get<boolean>('useDetectTyCommand', true)) {
-    const envTyCommandPath = which.sync('ty', { nothrow: true });
-    if (envTyCommandPath) {
-      initializationOptions.settings.path = [envTyCommandPath];
-    }
-  }
-
   return initializationOptions;
 }
 
