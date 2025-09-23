@@ -21,6 +21,7 @@ Plug 'yaegassy/coc-ty', {'do': 'yarn install --frozen-lockfile'}
 ## Configuration options
 
 - `ty.enable`: Enable coc-ty extension, default: `true`
+- `ty.disableCompletion`: Disable completion only, default: `false`
 - `ty.disableDiagnostics`: Disable diagnostics only, default: `false`
 - `ty.disableHover`: Disable hover only, default: `false`
 - `ty.disableInlayHint`: Disable inlayHint only, default: `false`

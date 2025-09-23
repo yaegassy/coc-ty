@@ -48,7 +48,8 @@ function getLanguageClientDisabledFeatures() {
   const r: string[] = [];
 
   // **REF**: disabledFeatures
-  // `:h coc-config-languageserver`
+  // `h: coc-config.txt`
+  if (getConfigDisableCompletion()) r.push('completion');
   if (getConfigDisableHover()) r.push('hover');
   if (getConfigDisableInlayHintHover()) r.push('inlayHint');
   if (getConfigDisableTypeDefinition()) r.push('typeDefinition');
@@ -58,6 +59,14 @@ function getLanguageClientDisabledFeatures() {
   }
 
   return r;
+}
+
+function getConfigDisableCompletion() {
+  return workspace.getConfiguration('ty').get<boolean>('disableCompletion', false);
+}
+
+function getConfigDisableDiagnostics() {
+  return workspace.getConfiguration('ty').get<boolean>('disableDiagnostics', false);
 }
 
 function getConfigDisableHover() {
@@ -70,8 +79,4 @@ function getConfigDisableInlayHintHover() {
 
 function getConfigDisableTypeDefinition() {
   return workspace.getConfiguration('ty').get<boolean>('disableTypeDefinition', false);
-}
-
-function getConfigDisableDiagnostics() {
-  return workspace.getConfiguration('ty').get<boolean>('disableDiagnostics', false);
 }

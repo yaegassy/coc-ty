@@ -80,6 +80,11 @@
           "default": true,
           "description": "Enable coc-ty extension"
         },
+        "ty.disableCompletion": {
+          "type": "boolean",
+          "default": false,
+          "description": "Disable completion only."
+        },
         "ty.disableDiagnostics": {
           "type": "boolean",
           "default": false,
