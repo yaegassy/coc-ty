@@ -105,19 +105,10 @@
           "default": false,
           "description": "Disable typeDefinition only."
         },
-        "ty.binaryPath": {
+        "ty.path": {
           "type": "string",
           "default": "",
           "description": "Custom path for the `ty` binary when using the native server. If no value is set, the `ty` command will be detected from the runtime environment."
-        },
-        "ty.path": {
-          "default": [],
-          "markdownDescription": "Path to a custom `ty` executable, e.g., `[\"/path/to/ty\"]`.",
-          "scope": "resource",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         },
         "ty.diagnosticMode": {
           "default": "openFilesOnly",

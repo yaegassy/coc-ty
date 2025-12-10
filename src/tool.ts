@@ -9,7 +9,7 @@ export async function getTyBinaryPath() {
   // 2. current environment
 
   // 1
-  let tyBinaryPath = workspace.getConfiguration('ty').get('binaryPath', '');
+  let tyBinaryPath = workspace.getConfiguration('ty').get('path', '');
   if (!tyBinaryPath) {
     // 2
     tyBinaryPath = which.sync('ty', { nothrow: true }) || '';

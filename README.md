@@ -21,12 +21,12 @@ Plug 'yaegassy/coc-ty', {'do': 'yarn install --frozen-lockfile'}
 ## Configuration options
 
 - `ty.enable`: Enable coc-ty extension, default: `true`
+- `ty.path`: Custom path for the `ty` binary. If no value is set, the `ty` command will be detected from the runtime environment, , default: `""`
 - `ty.disableCompletion`: Disable completion only, default: `false`
 - `ty.disableDiagnostics`: Disable diagnostics only, default: `false`
 - `ty.disableHover`: Disable hover only, default: `false`
 - `ty.disableInlayHint`: Disable inlayHint only, default: `false`
 - `ty.disableTypeDefinition`: Disable typeDefinition only, default: `false`
-- `ty.binaryPath`: Custom path for the `ty` binary. If no value is set, the `ty` command will be detected from the runtime environment, , default: `""`
 - `ty.trace.server`: Traces the communication between coc.nvim and the ty language server, default: `"off"`
 
 Other settings have the same configuration as [ty-vscode](https://github.com/astral-sh/ty-vscode).
