@@ -110,6 +110,18 @@
           "default": "",
           "description": "Custom path for the `ty` binary when using the native server. If no value is set, the `ty` command will be detected from the runtime environment."
         },
+        "ty.configuration": {
+          "default": null,
+          "markdownDescription": "Inline JSON configuration for ty settings. Overrides settings in a configuration file. For example\n\n```json\n{\n  \"rules\": {\n    \"unresolved-reference\": \"ignore\"\n  }\n}\n``` ",
+          "scope": "window",
+          "type": "object"
+        },
+        "ty.configurationFile": {
+          "default": null,
+          "markdownDescription": "Path to a `ty.toml` configuration file.",
+          "scope": "window",
+          "type": "string"
+        },
         "ty.diagnosticMode": {
           "default": "openFilesOnly",
           "markdownDescription": "Analysis scope for showing diagnostics.",
