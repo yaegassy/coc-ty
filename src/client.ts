@@ -1,5 +1,55 @@
-import { LanguageClient, LanguageClientOptions, ServerOptions, workspace } from 'coc.nvim';
+import {
+  ConfigurationWorkspaceMiddleware,
+  LanguageClient,
+  LanguageClientOptions,
+  ServerOptions,
+  workspace,
+} from 'coc.nvim';
 import { SERVER_SUBCOMMAND } from './constant';
+
+// Keys that are handled by the extension and should not be sent to the server
+const EXTENSION_ONLY_KEYS: Record<string, true> = {
+  // InitializationOptions
+  logLevel: true,
+  logFile: true,
+  // ExtensionSettings by coc-ty
+  enable: true,
+  disableCompletion: true,
+  disableDiagnostics: true,
+  disableHover: true,
+  disableInlayHint: true,
+  disableTypeDefinition: true,
+  path: true,
+  interpreter: true,
+  importStrategy: true,
+  trace: true,
+};
+
+function isExtensionOnlyKey(key: string): boolean {
+  return key in EXTENSION_ONLY_KEYS;
+}
+
+const configurationWorkspaceMiddleware: ConfigurationWorkspaceMiddleware = {
+  configuration: async (params, token, next) => {
+    const response = await next(params, token);
+
+    if (!Array.isArray(response)) {
+      return response;
+    }
+
+    return params.items.map((param, index) => {
+      const result = response[index];
+
+      if (param.section === 'ty' && result && typeof result === 'object') {
+        // Filter out extension-only settings that shouldn't be sent to the server
+        const serverSettings = Object.fromEntries(Object.entries(result).filter(([key]) => !isExtensionOnlyKey(key)));
+        return serverSettings;
+      }
+
+      return result;
+    });
+  },
+};
 
 export function createServerClient(command: string) {
   const newEnv = { ...process.env };
@@ -15,6 +65,9 @@ export function createServerClient(command: string) {
     documentSelector: ['python'],
     initializationOptions: getInitializationOptions(),
     disabledFeatures: getLanguageClientDisabledFeatures(),
+    middleware: {
+      workspace: configurationWorkspaceMiddleware,
+    },
   };
 
   const client = new LanguageClient('ty', 'ty server', serverOptions, clientOptions);
